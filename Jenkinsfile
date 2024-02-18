@@ -7,6 +7,7 @@ pipeline {
 
     stages {
         stage('SonarQube Scan') {
+                    agent {docker { image 'maven:3-amazoncorretto-17-debian' }}
             steps {
                 withSonarQubeEnv('sonarserver') {
                     sh 'mvn verify sonar:sonar -Dsonar.projectKey=mycaro2007_geo-revision'
